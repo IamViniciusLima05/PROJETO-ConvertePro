@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ConvertePro | Conversor de unidades e moedas</title>
+  <meta name="description" content="Converta moedas, comprimento, peso, temperatura, volume e velocidade em tempo real.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="topo">
+      <h1>Converte<span>Pro</span></h1>
+      <p>Moedas e medidas convertidas enquanto você digita.</p>
+    </header>
+
+    <nav class="abas" id="abas" role="tablist" aria-label="Tipo de conversão"></nav>
+
+    <section class="conversor" aria-live="polite">
+      <div class="lado">
+        <label for="valor-de">De</label>
+        <input id="valor-de" inputmode="decimal" autocomplete="off" value="1">
+        <select id="unid-de" aria-label="Unidade de origem"></select>
+      </div>
+      <button class="trocar" id="trocar" aria-label="Inverter unidades">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4v16M3 8l4-4 4 4"/><path d="M17 20V4M13 16l4 4 4-4"/></svg>
+      </button>
+      <div class="lado">
+        <label for="valor-para">Para</label>
+        <input id="valor-para" inputmode="decimal" autocomplete="off">
+        <select id="unid-para" aria-label="Unidade de destino"></select>
+      </div>
+      <p class="frase" id="frase"></p>
+      <p class="fonte" id="fonte"></p>
+    </section>
+
+    <div class="extras">
+      <section class="tabela-rapida">
+        <h2>Tabela rápida</h2>
+        <table>
+          <thead><tr><th id="th-de"></th><th id="th-para" class="num"></th></tr></thead>
+          <tbody id="tabela"></tbody>
+        </table>
+      </section>
+      <section class="historico">
+        <div class="hist-topo">
+          <h2>Últimas conversões</h2>
+          <button class="link" id="limpar-hist">Limpar</button>
+        </div>
+        <ul id="historico"></ul>
+      </section>
+    </div>
+  </main>
+  <script src="js/unidades.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>
