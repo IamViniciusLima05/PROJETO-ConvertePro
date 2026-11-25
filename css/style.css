@@ -38,6 +38,8 @@ button, input, select { font: inherit; color: inherit; }
 .frase { grid-column: 1 / -1; margin: 8px 0 0; font-size: 18px; color: #cfe6ee; }
 .frase b { color: #fff; font-size: 22px; }
 .fonte { grid-column: 1 / -1; margin: 0; font-size: 13px; color: #85aebc; min-height: 1em; }
+.fonte a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+.fonte a:hover { color: #fff; }
 
 .extras { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 20px; }
 .extras section { background: var(--papel); border-radius: var(--raio); padding: 20px; }

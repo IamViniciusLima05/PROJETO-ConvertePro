@@ -67,7 +67,14 @@ function calcular() {
 
   const vDe = estado.ultimoEditado === 'de' ? v : r, vPara = estado.ultimoEditado === 'de' ? r : v;
   $('#frase').innerHTML = `<b>${formatar(vDe, cat)}</b> ${escapar(rotulo(cat, de, vDe))} = <b>${formatar(vPara, cat)}</b> ${escapar(rotulo(cat, para, vPara))}`;
-  $('#fonte').textContent = cat === 'moeda' ? `Cotação: ${estado.fonteMoeda}. Valores apenas informativos.` : '';
+  const fonte = $('#fonte');
+  fonte.textContent = cat === 'moeda' ? `Cotação: ${estado.fonteMoeda}. Valores apenas informativos.` : '';
+  if (cat === 'moeda' && estado.viaApi) {
+    const a = document.createElement('a');
+    a.href = 'https://www.exchangerate-api.com'; a.target = '_blank'; a.rel = 'noopener';
+    a.textContent = 'Cotações por ExchangeRate-API';
+    fonte.append(' ', a);
+  }
   renderTabela();
   banco.salvar(`convertepro_par_${cat}`, [de, para]);
   registrarDepois(vDe, de, vPara, para);
@@ -130,6 +137,7 @@ $('#trocar').addEventListener('click', () => {
 async function atualizarCotacoes() {
   const cache = banco.ler('convertepro_cotacoes', null);
   const aplicar = (rates, quando) => {
+    estado.viaApi = true;
     Object.entries(CATEGORIAS.moeda.unidades).forEach(([cod, u]) => { if (rates[cod]) u.fator = rates[cod]; });
     estado.fonteMoeda = `atualizada em ${new Date(quando).toLocaleString('pt-BR', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' })}`;
   };
